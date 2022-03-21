@@ -5,7 +5,15 @@ const Home: NextPage = () => {
   return (
     <div>
       <Nav />
-      <h1>Home</h1>
+      <h1 className="active">Home</h1>
+      <style jsx>{`
+        a {
+          color: red;
+        }
+        .active {
+          color: springgreen;
+        }
+      `}</style>
     </div>
   );
 };
