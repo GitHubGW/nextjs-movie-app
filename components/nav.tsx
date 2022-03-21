@@ -12,18 +12,6 @@ const Nav = () => {
       <Link href="/about">
         <a className={router.pathname === "/about" ? "active" : ""}>About</a>
       </Link>
-      <style jsx>{`
-        nav {
-          border: 3px solid blue;
-        }
-        a {
-          text-decoration: none;
-          color: black;
-        }
-        .active {
-          color: crimson;
-        }
-      `}</style>
     </nav>
   );
 };
