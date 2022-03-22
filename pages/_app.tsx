@@ -1,14 +1,13 @@
-import { AppProps } from "next/app";
-import Nav from "../components/nav";
 import "../styles/reset.css";
 import "../styles/globals.css";
+import { AppProps } from "next/app";
+import Layout from "../components/layout";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <div>
-      <Nav />
+    <Layout>
       <Component {...pageProps} />
-    </div>
+    </Layout>
   );
 };
 
