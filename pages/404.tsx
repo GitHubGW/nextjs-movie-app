@@ -1,11 +1,9 @@
 import { NextPage } from "next";
-import PageTitle from "../components/page-title";
 
-const About: NextPage = () => {
+const NotFound: NextPage = () => {
   return (
     <div>
-      <PageTitle title="About" />
-      <h1>Your success is up to your efforts.</h1>
+      <h1>404 Page</h1>{" "}
       <style jsx>{`
         h1 {
           margin-top: 50px;
@@ -17,4 +15,4 @@ const About: NextPage = () => {
   );
 };
 
-export default About;
+export default NotFound;

@@ -1,10 +1,12 @@
 import { GetServerSidePropsContext } from "next";
 import PageTitle from "../../components/page-title";
 
-type MovieDetailParams = string[] | [];
+interface MovieDetailParams {
+  params: [string, string, string];
+}
 
-const MovieDetail = ({ params }: any) => {
-  const [title, id, posterPath] = (params || []) as MovieDetailParams;
+const MovieDetail = ({ params }: MovieDetailParams) => {
+  const [id, title, posterPath] = params;
 
   return (
     <div>
