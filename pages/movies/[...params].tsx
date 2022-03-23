@@ -6,7 +6,7 @@ interface MovieDetailParams {
 }
 
 const MovieDetail = ({ params }: MovieDetailParams) => {
-  const [id, title, posterPath] = params;
+  const [title, id, posterPath] = params;
 
   return (
     <div>
