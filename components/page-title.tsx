@@ -7,7 +7,7 @@ interface PageTitle {
 const PageTitle = ({ title }: PageTitle) => {
   return (
     <Head>
-      <title>{title} | NextJS Movie</title>
+      <title>{title} | Movie</title>
     </Head>
   );
 };

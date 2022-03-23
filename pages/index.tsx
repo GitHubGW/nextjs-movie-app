@@ -1,11 +1,13 @@
 import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType, NextPage } from "next";
+import Link from "next/link";
+import { NextRouter, useRouter } from "next/router";
 import PageTitle from "../components/page-title";
 
 interface Movie {
+  id: number;
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
-  id: number;
   original_language: string;
   original_title: string;
   overview: string;
@@ -26,40 +28,51 @@ interface MovieData {
 }
 
 const Home: NextPage = ({ movieData }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const router: NextRouter = useRouter();
+
+  const onClick = (movieId: number, movieTitle: string, moviePosterPath: string): void => {
+    router.push(`/movies/${movieTitle}/${movieId}${moviePosterPath}`);
+  };
+
   return (
     <div>
       <PageTitle title="Home" />
       <div className="movie_container">
         {movieData?.results.map((movie: Movie) => (
-          <div key={movie.id}>
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+          <div key={movie.id} onClick={() => onClick(movie.id, movie.title, movie.poster_path)}>
+            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
             <h1>{movie.title}</h1>
+            <h5>⭐️ {Math.ceil(movie.vote_average)}</h5>
           </div>
         ))}
       </div>
       <style jsx>{`
         .movie_container {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          margin-top: 15px;
-        }
-        .movie_container div {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: repeat(5, 1fr);
+          column-gap: 20px;
+          row-gap: 30px;
+          margin-top: 20px;
           margin-bottom: 30px;
-          width: 250px;
         }
         img {
-          width: 250px;
-          height: 370px;
+          width: 100%;
+          height: 350px;
           border-radius: 15px;
           cursor: pointer;
           transition: 0.3s;
         }
         img:hover {
-          transform: scale(1.05);
+          transform: scale(1.03);
         }
         h1 {
           margin-top: 10px;
+          font-weight: bold;
+        }
+        h5 {
+          margin-top: 10px;
+          font-size: 12px;
           font-weight: bold;
         }
       `}</style>
